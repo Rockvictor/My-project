@@ -1,10 +1,31 @@
-// Mobile nav toggle
+// Mobile nav toggle (slide-in panel with overlay)
   const burger = document.getElementById('burger');
-  const navLinks = document.querySelector('.nav-links');
+  const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+
+  function openNav() {
+    navLinks.classList.add('open');
+    burger.classList.add('open');
+    navOverlay.classList.add('show');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    navLinks.classList.remove('open');
+    burger.classList.remove('open');
+    navOverlay.classList.remove('show');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
   burger.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-    navLinks.style.cssText += 'flex-direction:column; position:absolute; top:64px; left:0; right:0; background:var(--cream); padding:20px 32px; border-bottom:1px solid var(--line); gap:16px; display:flex;';
+    navLinks.classList.contains('open') ? closeNav() : openNav();
   });
+  navOverlay.addEventListener('click', closeNav);
+  navAnchors.forEach(a => a.addEventListener('click', closeNav));
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNav(); });
+  // Close the panel automatically if the viewport grows back to desktop size
+  window.addEventListener('resize', () => { if (window.innerWidth > 980) closeNav(); });
 
   // Scroll reveal
   const revealEls = document.querySelectorAll('[data-reveal]');
@@ -41,11 +62,11 @@
 
   // Active nav link on scroll
   const sections = document.querySelectorAll('section[id]');
-  const navA = document.querySelectorAll('.nav-links a');
+  const navA = document.querySelectorAll('.nav-links a[data-nav]');
   window.addEventListener('scroll', () => {
     let current = 'top';
     sections.forEach(sec => {
       if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
     });
     navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-  });
+  }, { passive: true });

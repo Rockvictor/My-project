@@ -16,19 +16,23 @@
       <span class="logo-mark">🌾</span>
       Ecoshemill <span style="color:var(--gold-dark)">Agri Solutions</span>
     </a>
-    <div class="nav-links">
-      <a href="#top" class="active">Home</a>
-      <a href="#services">Services</a>
-      <a href="#products">Products</a>
-      <a href="#impact">Impact</a>
-      <a href="#updates">Updates</a>
-      <a href="#contact">Contact</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#top" class="active" data-nav><span class="nav-ic">🏠</span><span class="nav-label">Home</span></a>
+      <a href="#services" data-nav><span class="nav-ic">⚙️</span><span class="nav-label">Services</span></a>
+      <a href="#products" data-nav><span class="nav-ic">🌽</span><span class="nav-label">Products</span></a>
+      <a href="#impact" data-nav><span class="nav-ic">🌍</span><span class="nav-label">Impact</span></a>
+      <a href="#updates" data-nav><span class="nav-ic">📊</span><span class="nav-label">Updates</span></a>
+      <a href="#contact" data-nav><span class="nav-ic">✉️</span><span class="nav-label">Contact</span></a>
+      <!-- <a class="btn btn-gold mobile-only-cta" href="#contact"><span class="nav-ic">📅</span><span class="nav-label">Book Service</span></a> -->
     </div>
     <div class="nav-cta">
-      <a class="btn btn-gold" href="#contact">Book Service</a>
-      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      <a class="btn btn-gold desktop-only-cta" href="#contact">Book Service</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
 </header>
 
 <section class="hero" id="top">
