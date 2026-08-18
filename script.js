@@ -60,13 +60,15 @@
   }, { threshold: 0.4 });
   counters.forEach(c => cio.observe(c));
 
-  // Active nav link on scroll
+  // Active nav link on scroll (top drawer links + bottom tab bar)
   const sections = document.querySelectorAll('section[id]');
   const navA = document.querySelectorAll('.nav-links a[data-nav]');
+  const bottomNavA = document.querySelectorAll('.bottom-nav a[data-bottom-nav]');
   window.addEventListener('scroll', () => {
     let current = 'top';
     sections.forEach(sec => {
       if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
     });
     navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+    bottomNavA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
   }, { passive: true });
