@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a Service | Ecoshemill Agri Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brown:#4a2a28;
+    --brown-dark:#472927;
+    --green:#2d5a2b;
+    --gold:#e0ac26;
+    --gold-soft:#fbf1d6;
+    --cream:#faf8f4;
+    --hero:#f5f2ee;
+    --text:#2a1f1e;
+    --muted:#6b5f5d;
+    --border:#e6e0d8;
+    --danger:#b3261e;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--cream);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  svg{display:block}
+  .container{max-width:1232px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:19px;color:var(--brown)}
+  .logo svg{color:var(--gold)}
+  nav ul{display:flex;align-items:center;gap:32px;list-style:none}
+  nav a.link{font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+  nav a.link:hover,nav a.link.active{color:var(--gold)}
+  .btn-gold{display:inline-block;background:var(--gold);color:var(--brown);font-weight:600;font-size:14px;padding:12px 20px;border-radius:999px;transition:filter .2s,transform .2s}
+  .btn-gold:hover{filter:brightness(.95);transform:translateY(-1px)}
+  .burger{display:none;background:none;border:0;cursor:pointer;color:var(--brown)}
+
+  /* Hero */
+  .hero{background:var(--hero);text-align:center;padding:80px 24px 80px}
+  .eyebrow{display:inline-flex;align-items:center;gap:16px;color:var(--gold);font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+  .eyebrow::before,.eyebrow::after{content:"";width:40px;height:1px;background:var(--gold)}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(40px,6vw,64px);color:var(--brown);margin:20px 0 28px;line-height:1.1}
+  .hero h1 em{color:var(--green);font-style:italic}
+  .hero p{max-width:660px;margin:0 auto;font-size:18px;color:var(--muted);line-height:1.6}
+
+  /* Contact */
+  .contact{padding:96px 0}
+  .grid{display:grid;grid-template-columns:1fr 1.55fr;gap:48px;align-items:start}
+  .info h2{font-family:var(--serif);font-size:24px;color:var(--brown);margin-bottom:24px}
+  .item{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+  .icon{width:44px;height:44px;border-radius:12px;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;flex-shrink:0}
+  .item small{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .item span,.item a{font-size:15px;font-weight:500}
+  .item a:hover{color:var(--green)}
+  .callout{background:var(--green);color:#fff;border-radius:16px;padding:24px;margin-top:40px}
+  .callout h3{font-family:var(--serif);font-size:20px;margin-bottom:10px}
+  .callout p{font-size:15px;line-height:1.6;opacity:.95}
+
+  .card{background:#fff;border:1px solid var(--border);border-radius:24px;padding:32px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .field{margin-bottom:24px}
+  label{display:block;font-size:14px;font-weight:500;margin-bottom:8px}
+  label .req{color:var(--text)}
+  input,select,textarea{width:100%;font-family:var(--sans);font-size:14px;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px 12px;transition:border-color .2s,box-shadow .2s}
+  input::placeholder,textarea::placeholder{color:#8a7f7d}
+  input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 3px rgba(224,172,38,.25)}
+  select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:36px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236b5f5d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+  select:invalid{color:#8a7f7d}
+  textarea{min-height:118px;resize:vertical;line-height:1.5}
+  .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--danger)}
+  .err{display:none;color:var(--danger);font-size:12px;margin-top:6px}
+  .field.invalid .err{display:block}
+  .submit{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--brown);font-family:var(--sans);font-weight:600;font-size:15px;border:0;border-radius:999px;padding:15px;cursor:pointer;transition:filter .2s,transform .2s}
+  .submit:hover{filter:brightness(.95);transform:translateY(-1px)}
+  .submit:disabled{opacity:.6;cursor:wait}
+  .success{display:none;text-align:center;padding:48px 16px}
+  .success .tick{width:64px;height:64px;border-radius:50%;background:var(--gold-soft);color:var(--green);display:grid;place-items:center;margin:0 auto 20px}
+  .success h3{font-family:var(--serif);font-size:26px;color:var(--brown);margin-bottom:8px}
+  .success p{color:var(--muted);margin-bottom:24px}
+  .success button{background:none;border:1px solid var(--border);border-radius:999px;padding:10px 22px;font-family:var(--sans);font-weight:500;cursor:pointer}
+  .success button:hover{border-color:var(--gold)}
+  .card.sent form{display:none}
+  .card.sent .success{display:block}
+
+  /* Footer */
+  footer{background:var(--brown-dark);color:#fff;padding:64px 0 0}
+  .fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:32px}
+  .flogo{display:flex;gap:12px;font-family:var(--serif);font-weight:700;font-size:19px;line-height:1.5}
+  .flogo svg{color:var(--gold);margin-top:6px;flex-shrink:0}
+  .fabout{margin-top:18px;font-size:15px;line-height:1.6;opacity:.85;max-width:290px}
+  footer h4{font-family:var(--serif);color:var(--gold);font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+  footer ul{list-style:none}
+  footer li{margin-bottom:12px;font-size:15px;opacity:.9}
+  footer li a:hover{color:var(--gold)}
+  .fcontact li{display:flex;align-items:center;gap:10px}
+  .fcontact svg{color:var(--gold);flex-shrink:0}
+  .bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:40px;padding:26px 0;border-top:1px solid rgba(255,255,255,.12);font-size:13px;opacity:.75}
+
+  /* Responsive */
+  @media(max-width:960px){
+    .grid{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:860px){
+    .burger{display:block}
+    nav{position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);display:none}
+    nav.open{display:block}
+    nav ul{flex-direction:column;align-items:flex-start;gap:18px;padding:20px 24px}
+  }
+  @media(max-width:600px){
+    .row{grid-template-columns:1fr;gap:0}
+    .fgrid{grid-template-columns:1fr}
+    .card{padding:24px 20px}
+    .contact{padding:64px 0}
+    .hero{padding:56px 24px}
+    .hero p{font-size:16px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/></svg>
+      Ecoshemill Agri Solutions
+    </a>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <nav id="menu">
+      <ul>
+         <a href="#top" class="active" data-nav><span class="nav-label">Home</span></a>
+      <a href="services.html" data-nav><span class="nav-label">Services</span></a>
+      <a href="products.html" data-nav><span class="nav-label">Products</span></a>
+      <a href="Impact.html" data-nav><span class="nav-label">Impact</span></a>
+      <a href="updates.html" data-nav><span class="nav-label">Updates</span></a>
+      <a href="contact.html" data-nav><span class="nav-label">Contact</span></a>
+        <li><a class="btn-gold" href="#booking">Book Service</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">Get in Touch</span>
+  <h1>Book a <em>Service</em></h1>
+  <p>Ready to reduce post-harvest losses and access affordable livestock feed? Reach out to schedule a shelling, order feeds, or learn more about our services.</p>
+</section>
+
+<section class="contact" id="booking">
+  <div class="container grid">
+
+    <div class="info">
+      <h2>Contact Information</h2>
+
+      <div class="item">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><small>Phone</small><a href="tel:+254798894145">+254 798 894 145</a></div>
+      </div>
+
+      <div class="item">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+        <div><small>Email</small><a href="mailto:info@terratechsynergy.co.ke">info@terratechsynergy.co.ke</a></div>
+      </div>
+
+      <div class="item">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><small>Location</small><span>Rural Kenya</span></div>
+      </div>
+
+      <div class="item">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><small>Hours</small><span>Mon — Sat: 7am — 6pm</span></div>
+      </div>
+
+      <div class="callout">
+        <h3>Serving Farmer Groups</h3>
+        <p>We offer special rates for farmer groups and cooperatives with large batches. Contact us for group pricing and scheduled processing days.</p>
+      </div>
+    </div>
+
+    <div class="card" id="card">
+      <form id="form" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="name">Full Name <span class="req">*</span></label>
+            <input id="name" name="name" type="text" placeholder="e.g. Clinton Ochieng" autocomplete="name">
+            <div class="err">Please enter your full name.</div>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" placeholder="e.g. 0712 345 678" autocomplete="tel">
+            <div class="err">Enter a valid Kenyan phone number.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" placeholder="e.g. clinton@gmail.com" autocomplete="email">
+          <div class="err">Please enter a valid email address.</div>
+        </div>
+
+        <div class="field">
+          <label for="service">Service Needed <span class="req">*</span></label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Maize Shelling</option>
+            <option>Feed Milling</option>
+            <option>Poultry Feed</option>
+            <option>Dairy Feed</option>
+            <option>Pig &amp; Goat Feed</option>
+            <option>Farmer Group Booking</option>
+            <option>Other Enquiry</option>
+          </select>
+          <div class="err">Please choose a service.</div>
+        </div>
+
+        <div class="field">
+          <label for="message">Message <span class="req">*</span></label>
+          <textarea id="message" name="message" placeholder="Tell us about your needs — quantity, preferred dates, location, etc."></textarea>
+          <div class="err">Please tell us a little about your needs.</div>
+        </div>
+
+        <button type="submit" class="submit" id="submitBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          <span id="submitLabel">Send Message</span>
+        </button>
+      </form>
+
+      <div class="success" role="status">
+        <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Thank you, <span id="who">friend</span>!</h3>
+        <p>We've received your request and will contact you shortly to confirm your booking.</p>
+        <button type="button" id="again">Send another message</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div>
+        <div class="flogo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/></svg>
+          <span>Ecoshemill Agri Solutions Ltd</span>
+        </div>
+        <p class="fabout">Transforming post-harvest waste into livestock wealth for Kenyan smallholder farmers.</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Impact</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="#">Maize Shelling</a></li>
+          <li><a href="#">Feed Milling</a></li>
+          <li><a href="#">Poultry Feed</a></li>
+          <li><a href="#">Dairy Feed</a></li>
+          <li><a href="#">Pig &amp; Goat Feed</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get in Touch</h4>
+        <ul class="fcontact">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+254798894145">+254 798 894145</a></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><a href="mailto:info@ecoshemill.co.ke">info@ecoshemill.co.ke</a></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Siaya, Kenya</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span>© <span id="year">2026</span> Ecoshemill Ltd. All rights reserved.</span>
+      <span>Building climate resilience for Kenyan communities.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('menu');
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+
+  // Form
+  const form = document.getElementById('form');
+  const card = document.getElementById('card');
+  const btn = document.getElementById('submitBtn');
+  const label = document.getElementById('submitLabel');
+
+  const rules = {
+    name:    v => v.trim().length >= 2,
+    phone:   v => /^(\+?254|0)?[17]\d{8}$/.test(v.replace(/[\s-]/g, '')),
+    email:   v => v.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+    service: v => v !== '',
+    message: v => v.trim().length >= 5
+  };
+
+  function check(id) {
+    const el = document.getElementById(id);
+    const ok = rules[id](el.value);
+    el.closest('.field').classList.toggle('invalid', !ok);
+    return ok;
+  }
+
+  Object.keys(rules).forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('blur', () => check(id));
+    el.addEventListener('input', () => {
+      if (el.closest('.field').classList.contains('invalid')) check(id);
+    });
+    el.addEventListener('change', () => {
+      if (el.closest('.field').classList.contains('invalid')) check(id);
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const results = Object.keys(rules).map(check);
+    if (results.includes(false)) {
+      form.querySelector('.invalid input, .invalid select, .invalid textarea')?.focus();
+      return;
+    }
+    btn.disabled = true;
+    label.textContent = 'Sending…';
+
+    // Simulated send — replace with a real fetch() to your backend / form service.
+    setTimeout(() => {
+      document.getElementById('who').textContent =
+        document.getElementById('name').value.trim().split(' ')[0];
+      card.classList.add('sent');
+      btn.disabled = false;
+      label.textContent = 'Send Message';
+      form.reset();
+    }, 900);
+  });
+
+  document.getElementById('again').addEventListener('click', () => {
+    card.classList.remove('sent');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Products | Ecoshemill Agri Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brown:#4a2a28; --brown-d:#3d2220; --gold:#e1aa28; --green:#2d5a2d;
+  --cream:#faf8f4; --sand:#f4f1ec; --line:#e6dfd5; --text:#5b4a47;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--cream);line-height:1.6}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);color:var(--brown);line-height:1.15}
+em{font-style:italic}
+.eyebrow{display:flex;align-items:center;justify-content:center;gap:12px;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before,.eyebrow::after{content:"";width:32px;height:1px;background:currentColor}
+
+/* Header */
+header{background:var(--cream);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1020px;margin:0 auto;padding:0 20px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;color:var(--brown);font-size:1.05rem}
+.brand svg{color:var(--gold)}
+nav ul{display:flex;gap:28px;list-style:none;align-items:center}
+nav a{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text)}
+nav a:hover,nav a.active{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--brown);font-weight:600;font-size:.88rem;padding:11px 22px;border-radius:999px;border:0;cursor:pointer;font-family:var(--sans);transition:background .2s}
+.btn:hover{background:#d09a1c}
+.btn.sm{font-size:.8rem;padding:8px 18px}
+nav a.btn{text-transform:none;letter-spacing:0;color:var(--brown)}
+.menu-btn{display:none;background:none;border:0;color:var(--brown);cursor:pointer}
+
+/* Hero */
+.hero{text-align:center;color:#fff;padding:64px 20px 70px;
+  background:
+   radial-gradient(ellipse at 12% 30%,rgba(214,160,60,.55),transparent 45%),
+   radial-gradient(ellipse at 88% 25%,rgba(200,150,70,.5),transparent 45%),
+   radial-gradient(circle at 30% 80%,rgba(160,110,60,.5) 0 6%,transparent 7%),
+   linear-gradient(180deg,#7a4a3a,#6a4036)}
+.hero h1{color:#fff;font-size:clamp(2.4rem,6vw,3.4rem);margin:14px 0 20px}
+.hero h1 em{color:var(--gold)}
+.hero p{max-width:540px;margin:0 auto;font-size:1.05rem;color:#f6ece6}
+
+/* Products */
+.products{padding:80px 0 90px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:1020px;margin:0 auto;padding:0 20px}
+.card{display:flex;flex-direction:column;padding:22px;border:1px solid var(--line);border-radius:14px;background:#fbf9f5}
+.tag{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.card h3{font-size:1.2rem;margin-bottom:12px}
+.card > p{font-size:.85rem;margin-bottom:18px}
+.meter{margin-bottom:10px}
+.meter div.lbl{display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:4px}
+.meter b{font-weight:600;color:var(--brown)}
+.track{height:6px;border-radius:99px;background:#e9e4df;overflow:hidden}
+.fill{height:100%;width:0;border-radius:99px;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.fill.protein{background:var(--gold)}.fill.fiber{background:var(--green)}.fill.energy{background:#8a7a76}
+.ing{font-size:.75rem;margin:16px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;flex:1;align-content:flex-start}
+.chips span{font-size:.7rem;background:#ebe6e0;padding:3px 10px;border-radius:99px}
+.buy{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:18px}
+.price{font-family:var(--serif);font-weight:700;font-size:1.5rem;color:var(--brown);line-height:1.1}
+.buy small{font-size:.72rem;display:block}
+
+/* CTA */
+.cta{background:var(--green);color:#fff;text-align:center;padding:76px 20px}
+.cta h2{color:#fff;font-size:2.2rem;margin-bottom:16px}
+.cta p{max-width:520px;margin:0 auto 30px;font-size:1.05rem;color:#e6efe3}
+
+/* Footer */
+footer{background:var(--brown);color:#e8dcd6;padding:60px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:30px;max-width:1020px;margin:0 auto;padding:0 20px}
+footer .brand{color:#fff;margin-bottom:14px}
+footer .brand span{color:var(--gold)}
+footer h5{font-family:var(--serif);color:var(--gold);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+footer li{list-style:none;font-size:.85rem;margin-bottom:10px}
+footer a:hover{color:var(--gold)}
+footer p{font-size:.85rem}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;max-width:1020px;margin:44px auto 0;padding:24px 20px 0;border-top:1px solid rgba(255,255,255,.12);font-size:.75rem;color:#b9a8a1}
+
+/* Order toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--brown);color:#fff;padding:12px 22px;border-radius:99px;font-size:.88rem;opacity:0;pointer-events:none;transition:.3s;z-index:30}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){.fill{transition:none}.toast{transition:none}}
+@media(max-width:900px){
+  .menu-btn{display:block}
+  nav ul{display:none;position:absolute;top:72px;left:0;right:0;background:var(--cream);flex-direction:column;padding:20px;gap:18px;border-bottom:1px solid var(--line)}
+  nav ul.open{display:flex}
+  .grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#" class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22 16 8"/><path d="M3.5 12.5 6 10l2.5 2.5L6 15z"/><path d="M7.5 8.5 10 6l2.5 2.5L10 11z"/><path d="M11.5 4.5 14 2l2.5 2.5L14 7z"/><path d="M12.5 15.5 15 13l2.5 2.5L15 18z"/><path d="M16.5 11.5 19 9l2.5 2.5L19 14z"/></svg>
+      Ecoshemill Agri Solutions
+    </a>
+    <nav aria-label="Main">
+      <ul id="menu">
+    <a href="#top" class="active" data-nav><span class="nav-label">Home</span></a>
+      <a href="services.html" data-nav><span class="nav-label">Services</span></a>
+      <a href="products.html" data-nav><span class="nav-label">Products</span></a>
+      <a href="Impact.html" data-nav><span class="nav-label">Impact</span></a>
+      <a href="updates.html" data-nav><span class="nav-label">Updates</span></a>
+      <a href="contact.html" data-nav><span class="nav-label">Contact</span></a>
+        <li><a href="#" class="btn">Book Service</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="eyebrow">Nutrition Commissary</div>
+    <h1>Our <em>Products</em></h1>
+    <p>Locally milled, nutrient-rich livestock feeds at prices smallholder farmers can afford. Every bag contributes to the circular economy.</p>
+  </section>
+
+  <section class="products">
+    <!-- Cards are rendered from the PRODUCTS array in the script below. Add an object there to add a product. -->
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="cta">
+    <h2>Need a Custom Feed Mix?</h2>
+    <p>We can create custom feed formulations based on your livestock needs and available raw materials. Contact us to discuss your requirements.</p>
+    <a href="#" class="btn">Get In Touch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="brand">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e1aa28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22 16 8"/><path d="M7.5 8.5 10 6l2.5 2.5L10 11z"/><path d="M11.5 4.5 14 2l2.5 2.5L14 7z"/><path d="M12.5 15.5 15 13l2.5 2.5L15 18z"/></svg>
+        <div>Ecoshemill Agri Solutions <span>Ltd</span></div>
+      </div>
+      <p>Transforming post-harvest waste into livestock wealth for Kenyan smallholder farmers.</p>
+    </div>
+    <div><h5>Quick Links</h5><ul><li><a href="#">Home</a></li><li><a href="#">Services</a></li><li><a href="#">Products</a></li><li><a href="#">Impact</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div><h5>Our Services</h5><ul><li><a href="#">Maize Shelling</a></li><li><a href="#">Feed Milling</a></li><li><a href="#">Poultry Feed</a></li><li><a href="#">Dairy Feed</a></li><li><a href="#">Pig &amp; Goat Feed</a></li></ul></div>
+    <div><h5>Get in Touch</h5><ul><li>📞 <a href="tel:+254798894145">+254 798 894145</a></li><li>✉️ <a href="mailto:info@ecoshemill.co.ke">info@ecoshemill.co.ke</a></li><li>📍 Siaya, Kenya</li></ul></div>
+  </div>
+  <div class="legal"><span>© 2026 Ecoshemill Ltd. All rights reserved.</span><span>Building climate resilience for Kenyan communities.</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Mobile menu
+const btn = document.getElementById('menuBtn'), menu = document.getElementById('menu');
+btn.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+});
+
+// Product data: add more objects to show more cards
+const PRODUCTS = [
+  { tag:'Chickens (Layers)', name:'Poultry Feed — Layers',
+    desc:'Specially formulated from ground maize cobs and grains to support egg production and maintain healthy feather condition in laying hens.',
+    protein:22, fiber:5, energy:2800, price:1800,
+    ingredients:['Ground maize','Maize cob meal','Mineral premix','Bone meal'] },
+  { tag:'Chickens (Broilers)', name:'Poultry Feed — Broilers',
+    desc:'High-protein feed designed for rapid, healthy growth in broiler chickens. Made from locally milled grains and fortified with essential nutrients.',
+    protein:24, fiber:4, energy:3000, price:2000,
+    ingredients:['Ground maize','Soybean meal','Maize cob meal','Premix'] },
+  { tag:'Dairy Cows', name:'Dairy Feed',
+    desc:'A balanced dairy meal combining shredded maize stalks with ground grains, formulated to boost milk production while maintaining body condition.',
+    protein:18, fiber:12, energy:2500, price:1500,
+    ingredients:['Shredded maize stalks','Ground maize','Cob meal','Salt lick'] }
+];
+// Scale each bar against a sensible maximum for its nutrient
+const MAX = { protein:30, fiber:20, energy:3500 };
+const fmt = n => n.toLocaleString('en-KE');
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const meter = (key, label, val, text) => `
+  <div class="meter"><div class="lbl"><span>${label}</span><b>${text}</b></div>
+  <div class="track"><div class="fill ${key}" data-w="${Math.min(val / MAX[key] * 100, 100).toFixed(1)}"></div></div></div>`;
+
+document.getElementById('grid').innerHTML = PRODUCTS.map((p, i) => `
+  <article class="card">
+    <div class="tag">${esc(p.tag)}</div>
+    <h3>${esc(p.name)}</h3>
+    <p>${esc(p.desc)}</p>
+    ${meter('protein','Protein',p.protein,p.protein+'%')}
+    ${meter('fiber','Fiber',p.fiber,p.fiber+'%')}
+    ${meter('energy','Energy',p.energy,fmt(p.energy)+' kcal')}
+    <div class="ing">Key Ingredients:</div>
+    <div class="chips">${p.ingredients.map(x => `<span>${esc(x)}</span>`).join('')}</div>
+    <div class="buy">
+      <div><div class="price">KES ${fmt(p.price)}</div><small>per 50kg bag</small></div>
+      <button class="btn sm" data-i="${i}">Order <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+  </article>`).join('');
+
+// Animate the bars once when the cards scroll into view
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.fill').forEach(f => f.style.width = f.dataset.w + '%');
+    io.unobserve(e.target);
+  });
+}, { threshold: .25 });
+document.querySelectorAll('.card').forEach(c => io.observe(c));
+
+// Order buttons: replace this with a link to your contact/order form or WhatsApp
+const toast = document.getElementById('toast');
+let t;
+document.getElementById('grid').addEventListener('click', e => {
+  const b = e.target.closest('button[data-i]'); if (!b) return;
+  toast.textContent = 'Order request started for ' + PRODUCTS[b.dataset.i].name;
+  toast.classList.add('show'); clearTimeout(t);
+  t = setTimeout(() => toast.classList.remove('show'), 2600);
+});
+</script>
+</body>
+</html>
